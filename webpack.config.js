@@ -6,7 +6,8 @@ module.exports = {
     entry: './src/index.js',
     output:{
         path: path.resolve(__dirname, 'dist'),
-        filename: 'bundle.js'
+        filename: 'bundle.js',
+        publicPath: '/'
     },
     resolve: {
         extensions:['.js', '.jsx']
@@ -35,9 +36,23 @@ module.exports = {
                 'css-loader',
                 'sass-loader'
                 ]
+            },
+            {
+                test: /\.(png|gif|jpg)$/,
+                use:[
+                    {
+                        'loader': 'file-loader',
+                        options:{
+                            name: 'assests/[hash].[ext]'
+                        }
+                    }
+                ]
             }
         ]
     },
+    devServer: {
+        historyApiFallback: true,
+      },
     plugins: [
         new HtmlWebpackPlugin({
             template: './public/index.html',
