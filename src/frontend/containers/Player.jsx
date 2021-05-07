@@ -14,13 +14,13 @@ const Player = (props) => {
   const {source} = props.location.state
   return !hasPlaying ? <NotFound /> : (
     <div className="Player">
-      {/* <video controls autoPlay> */}
-      <iframe width="420" height="315" className="Player"
+      <video controls autoPlay>
+      {/* <iframe width="420" height="315" className="Player"
             src={source}>
-      </iframe>
-        {/* <source src={source} type="video/mp4" /> */}
+      </iframe> */}
+        <source src={source} type="video/mp4" />
         Your browser does not support HTML5 video.
-      {/* </video> */}
+      </video>
       <div className="Player-back">
         <button type="button" onClick={() => props.history.goBack()}>
           Regresar

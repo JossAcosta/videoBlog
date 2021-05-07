@@ -11,6 +11,7 @@ import useInitialState from '../hooks/useInitialState';
 const API = 'http://localhost:3000/initialState';
 const Home = ({ myList, trends, originals}) => {
     // const initialState = useInitialState(API);
+    console.log(trends);
     return (
        <React.Fragment>
            <Header/>
