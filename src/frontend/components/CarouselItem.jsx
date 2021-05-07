@@ -11,7 +11,7 @@ import removeIcon from '../assets/static/remove-icon.png';
 
 
 const CarouselItem = (props) =>{
-  const { _id,cover, title, year, contentRating, duration, isList } = props;
+  const { _id,cover, title, year, contentRating, duration, isList, } = props;
   const handleSetFavorite = () => {
     props.setFavorite({
      _id, cover, title, year, contentRating, duration
@@ -28,7 +28,8 @@ const CarouselItem = (props) =>{
       <img className="carousel-item__img" src={cover} alt={title}  />
       <div className="carousel-item__details">
         <div>
-          <Link to={`/player/${_id}`}>
+          <Link to={`/player/${_id}`}
+          >
             <img 
               className="carousel-item__details--img" 
               src={playIcon} alt="Play Icon" 
@@ -51,7 +52,7 @@ const CarouselItem = (props) =>{
 }
 
 CarouselItem.propTypes = {
-  // _id: PropTypes.number || PropTypes.string,
+  _id: PropTypes.string,
   cover: PropTypes.string,
   title: PropTypes.string,
   year: PropTypes.number || PropTypes.string,

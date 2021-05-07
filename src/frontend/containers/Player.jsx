@@ -8,16 +8,16 @@ import '../assets/styles/components/Player.scss';
 const Player = (props) => {
   const { _id } = props.match.params;
   const [loading, changeLoading] = useState(true);
-  const hasPlaying = Object.keys(props.playing).length > 0;
-
+  const hasPlaying = Object.keys(props.match.params).length > 0;
   useEffect(() => {
-    props.getVideoSource(id);
+    props.getVideoSource(_id);
     changeLoading(false);
   }, []);
 
   return loading
     ? <h1 />
-    : hasPlaying ? (
+    :
+     hasPlaying ? (
       <div className="Player">
         <video controls autoPlay>
           <source src={props.playing.source} type="video/mp4" />

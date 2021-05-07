@@ -53,8 +53,7 @@ const setResponse = (html, preloadedState, manifest) => {
   const mainBuild = manifest ? manifest['main.js'] : '/assets/app.js';
   const vendorBuild = manifest ? manifest['vendors.js'] : 'assets/vendor.js';
   return (
-    `
-      <!DOCTYPE html>
+    `<!DOCTYPE html>
       <html lang="es">
         <head>
           <meta charset="UTF-8">
@@ -62,7 +61,7 @@ const setResponse = (html, preloadedState, manifest) => {
           <meta http-equiv="X-UA-Compatible" content="ie=edge">
           <meta charset="utf-8" />
           <link rel="stylesheet" href="${mainStyles}" type="text/css"/>
-          <title>Platfix</title>
+          <title>VideoBlog</title>
         </head>
         <body>
           <div id="app">${html}</div>
@@ -103,8 +102,6 @@ try {
     originals: []
   }
 }
-
-console.log(initialState);
 
   const store = createStore(reducer, initialState);
   const preloadedState = store.getState();
