@@ -28,7 +28,8 @@ const CarouselItem = (props) =>{
       <img className="carousel-item__img" src={cover} alt={title}  />
       <div className="carousel-item__details">
         <div>
-          <Link to={`/player/${_id}`}
+          <Link to={{pathname:`/player/${_id}`,
+          state: { source: props.source} }}
           >
             <img 
               className="carousel-item__details--img" 

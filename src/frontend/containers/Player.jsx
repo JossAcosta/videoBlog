@@ -1,40 +1,43 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
-
-import { getVideoSource } from '../actions';
+import { getVideoSource } from "../actions";
 import '../assets/styles/components/Player.scss';
+import NotFound from "./NotFound";
 
 const Player = (props) => {
   const { _id } = props.match.params;
-  const [loading, changeLoading] = useState(true);
   const hasPlaying = Object.keys(props.match.params).length > 0;
   useEffect(() => {
     props.getVideoSource(_id);
-    changeLoading(false);
   }, []);
-
-  return loading
-    ? <h1 />
-    :
-     hasPlaying ? (
-      <div className="Player">
-        <video controls autoPlay>
-          <source src={props.playing.source} type="video/mp4" />
-      Your browser does not support HTML5 video.
-        </video>
-        <div className="Player-back">
-          <button type="button" onClick={() => props.history.goBack()}>
-                Regresar
-          </button>
-        </div>
+  const {source} = props.location.state
+  return !hasPlaying ? <NotFound /> : (
+    <div className="Player">
+      {/* <video controls autoPlay> */}
+      <iframe width="420" height="315" className="Player"
+            src={source}>
+      </iframe>
+        {/* <source src={source} type="video/mp4" /> */}
+        Your browser does not support HTML5 video.
+      {/* </video> */}
+      <div className="Player-back">
+        <button type="button" onClick={() => props.history.goBack()}>
+          Regresar
+        </button>
       </div>
-    ) : <Redirect to="/404/" />;
+    </div>
+  );
+}
+Player.propTypes = {
+  getVideoSource: PropTypes.func,
 };
 
-const mapStateToProps = (state) => ({
-  playing: state.playing,
-});
+const mapStateToProps = state => {
+  return {
+    playing: state.playing,
+  };
+};
 
 const mapDispatchToProps = {
   getVideoSource,

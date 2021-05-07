@@ -90,6 +90,7 @@ try {
     user:{
       id, email,name,
     },
+    playing:[],
     myList:[],
     trends:movieList.filter(movie => movie.contentRating === 'PG' && movie._id),
     originals:movieList.filter(movie => movie.contentRating != 'PG' && movie._id)
@@ -97,6 +98,7 @@ try {
 } catch (error) {
   initialState = {
     user: {},
+    playing:[],
     myList: [],
     trends: [],
     originals: []
