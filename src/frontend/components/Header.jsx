@@ -9,18 +9,23 @@ import '../assets/styles/components/Header.scss';
 import logo from '../assets/static/logo-platzi-video-BW2.png';
 import userIcon from '../assets/static/user-icon.png';
 
-const Header = (props) => {
+const Header = props => {
     const { user, isLogin, isRegister } = props;
     const hasUser = Object.keys(user).length > 0;
-    const handleLogOut= () => {
-        props.logoutRequest({});
-    }
-    const haderClass = classNames('header',{
-        isLogin,
-        isRegister,
-    })
+    const HeaderClass = classNames('header', {
+      isLogin,
+      isRegister,
+    });
+    const handleLogout = () => {
+      document.cookie = "email=";
+      document.cookie = "name=";
+      document.cookie = "id=";
+      document.cookie = "token="
+      props.logoutRequest({});
+      window.location.href = '/login';
+    };
     return(
-        <header className={haderClass}>
+        <header className={HeaderClass}>
             <Link to="/">
                 <img className="header__img" src={logo} alt="Platzi Video"/>
             </Link>
@@ -37,11 +42,9 @@ const Header = (props) => {
                             <li><Link to="/">{user.name}</Link></li>
                             : null
                         }
-                        {hasUser ?
-                            <li><Link to="#logout" onClick={handleLogOut} >Cerrar Sesión</Link></li>
-                            :
-                            <li><Link to="/login">Inciar Sesión</Link></li>
-                        }
+                     {hasUser ? 
+                     <li><a href="#logout" onClick={handleLogout}>Cerrar Sesión</a></li> : 
+                     <li><Link to="login">Iniciar Sesión</Link></li>}
                     </ul>
                 </div>
         </header>
