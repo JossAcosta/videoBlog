@@ -92,8 +92,8 @@ try {
     },
     playing:[],
     myList:[],
-    trends:movieList,
-    originals:movieList
+    trends:movieList.filter(movie => movie.contentRating === 'PG' && movie._id),
+    originals:movieList.filter(movie => movie.contentRating === 'G' && movie._id)
   }
 } catch (error) {
   initialState = {
